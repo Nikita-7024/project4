@@ -82,7 +82,8 @@ try {
     }
 
     
-    const urlCode = nanoid.nanoid().toLowerCase();
+    const urlCode = nanoid.nanoid().toLowerCase();      
+
     const shortUrl = baseUrl + "/" + urlCode;
     shortUrl.toLowerCase();
 
@@ -106,7 +107,6 @@ try {
 }
 };
 
-module.exports.shortenUrl = shortenUrl;
 
 //redirectToOriginalUrl
 
@@ -117,9 +117,7 @@ try {
     let cahcedUrlCode = await GET_ASYNC(`${urlCode}`)
 
         if (cahcedUrlCode) {
-
             return res.status(200).redirect(JSON.parse(cahcedUrlCode))
-
         }
 
     const isUrlExist = await urlModel.findOne({ urlCode: urlCode });
@@ -142,3 +140,4 @@ try {
 };
 
 module.exports.getUrl = getUrl;
+module.exports.shortenUrl = shortenUrl;
